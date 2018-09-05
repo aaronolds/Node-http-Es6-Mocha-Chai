@@ -1,22 +1,20 @@
-import { expect } from 'chai';
-import { server } from "../index";
-var http = require('http'); // why does this have to be require???  If I try to import it fails
+import { app } from "../index"; // If I don't include the app it will fail
+var http = require("http"); // why does this have to be require???  If I try to import it fails
+import { expect, use, request } from "chai";
+import chaiHttp from "chai-http";
 
-describe("server", function() {
-  before(function() {
-    server.listen(3000);
-  });
-
-  after(function() {
-    server.close();
-  });
-});
+//var expect = _expect;
+use(chaiHttp);
 
 describe("test", function() {
   it("should return 200", function(done) {
-    http.get("http://localhost:3000", function(res) {
-      expect(res.statusCode, 'status code [res.statusCode]').to.be.equal(200);
-      done();
-    });
+    // <= Pass in done callback
+    request("http://localhost:3000")
+      .get("/")
+      .end(function(err, res) {
+        expect(err).to.be.null;
+        expect(res).to.have.status(200);
+        done(); // <= Call done to signal callback end
+      });
   });
 });
