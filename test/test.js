@@ -1,16 +1,22 @@
-import { expect } from 'chai'
+import { expect } from 'chai';
+import { server } from "../index";
+var http = require('http'); // why does this have to be require???  If I try to import it fails
 
-describe('test', function () {
-  it('should pass', function () {
-    expect('string').to.be.a('string')
+describe("server", function() {
+  before(function() {
+    server.listen(3000);
   });
 
-  it('should return 200', function (done) {
-    http.get('http://localhost:3000', function (res) {
-      assert.equal(200, res.statusCode);
+  after(function() {
+    server.close();
+  });
+});
+
+describe("test", function() {
+  it("should return 200", function(done) {
+    http.get("http://localhost:3000", function(res) {
+      expect(res.statusCode, 'status code [res.statusCode]').to.be.equal(200);
       done();
     });
   });
-
-})
-
+});
