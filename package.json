@@ -9,7 +9,7 @@
     "build": "babel ./ -d dist",
     "debug": "node  --inspect-brk=9229 ./index.js",
     "mocha": "mocha --require babel-register",
-    "test": "mocha --require babel-register --recursive ./test/"
+    "test": "mocha --exit --require babel-register --recursive ./test/"
   },
   "author": "",
   "license": "MIT",
@@ -46,5 +46,8 @@
     "eslint": "^5.5.0",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.4"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
   }
 }
