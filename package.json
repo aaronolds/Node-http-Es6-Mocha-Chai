@@ -9,7 +9,7 @@
     "build": "babel ./ -d dist",
     "debug": "node  --inspect-brk=9229 ./index.js",
     "mocha": "mocha --require babel-register",
-    "test": "mocha --require babel-register --recursive ./test/"
+    "test": "mocha --exit --require babel-register --recursive ./test/"
   },
   "author": "",
   "license": "MIT",
